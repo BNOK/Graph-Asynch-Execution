@@ -4,38 +4,56 @@ class Graph {
     // adjacent list
     constructor(noOfVertices) {
       this.noOfVertices = noOfVertices;
-      this.vertexList = new Array();
-      this.edgesList = new Array();
+      this.GraphList = new Map();
+
+      
     }
   
   
     AddVertex(vertex) {
-      this.vertexList.push(vertex);
+        this.GraphList.set(v, []);
       
     }
   
-    AddEdge(pair) {
-      this.edgesList.push(pair);
+    AddEdge(v,w) {
+        this.GaphList.get(v).push(w);
     }
     // find starting points ---------
     FindStart(){
-        const st = new Set(this.vertexList);
-        // check all elements in the set
-        this.edgesList.forEach(find)
-
-        return new Array(st);
+        temp = Array.from(this.GraphList.keys());
+        this.GraphList.forEach(finding(element));
+        return temp;
     }
-    // function for the foreach loop 
-    find(edge){
-        if (st.has(edge[1])){
-            st.delete(edge[1]);
+    finding(element){
+        arr1 =Array.from(element.values());
+        for(let i=0 ; i<arr1;i++){
+            if (temp.includes(arr1[i])){
+                temp.splice(i,1);
+            }
         }
     }
     // find all layers ---------------------
-    
- 
-
-    
+    FinalLayering(tempo){
+        tempo.forEach(findnemo(element))
+    }
+    findnemo(element){
+        for (var m in this.GraphList){
+            for (var i=0;i<this.GraphList[m].length;i++){
+            // ... do something with myMap[m][i] ...
+            
+            }
+        } 
+    }
+   
+//-----------------------------
+    // if (index < x.length){
+    //     x[index].add(starter);
+    // }
+    // else{
+    //     x.push(new Set(starter));
+    // }
+    // index++;
+    // starter = E[1];
 
     //----------------------------------------------------------------------------------
     printGraph()
