@@ -33,27 +33,30 @@ class Graph {
         }
     }
     // find all layers ---------------------
-    FinalLayering(tempo){
-        tempo.forEach(findnemo(element))
+    Looper(temp){
+        finalList = new Array();
+        finalList.push(new Set(temp));
+        index =0;
+        FinalLayer(temp){
+            index += 1;
+            arr1 = temp.forEach(findnemo);
+            temp = Array.from(finalList[index]);
+            if (temp== [])
+                    return ;
+            else
+                this.FinalLayer(temp);
+        }
+
     }
+    
+
     findnemo(element){
-        for (var m in this.GraphList){
-            for (var i=0;i<this.GraphList[m].length;i++){
-            // ... do something with myMap[m][i] ...
-            
-            }
-        } 
+        
+        arr = this.GraphList[element];
+        S= new Set(arr);
+        finalList[index].add(S);
     }
-   
-//-----------------------------
-    // if (index < x.length){
-    //     x[index].add(starter);
-    // }
-    // else{
-    //     x.push(new Set(starter));
-    // }
-    // index++;
-    // starter = E[1];
+
 
     //----------------------------------------------------------------------------------
     printGraph()
