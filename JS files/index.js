@@ -1,4 +1,5 @@
 const GP = require('./Graph');
+var parallel = require('run-parallel')
 
 // specify the number of vertecies 
 let Graph = new GP(5);
@@ -34,8 +35,31 @@ console.log("arr ="+arr);
 finalArray = Graph.Looper(arr);
 console.log("finalArray =");
 console.log(finalArray);
-// execute in parallel 
 
+
+// execute in parallel  
+finalArray.foreach(element => parallel(element ,function ))
+
+// this is the function => give it an array or object of the functions to run 
+// and give it a callback function to run one all the functione are complete 
+// we can use the callback function to pass results from one layer to another layer
+
+parallel([
+  function (callback) {
+    setTimeout(function () {
+      callback(null, 'execute one')
+    }, 200)
+  },
+  function (callback) {
+    setTimeout(function () {
+      callback(null, 'execute two')
+    }, 100)
+  }
+],
+// optional callback
+function (err, results) {
+ 
+})
 
 
 
