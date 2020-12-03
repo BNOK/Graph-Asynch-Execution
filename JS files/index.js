@@ -34,7 +34,7 @@ console.log("arr ="+arr);
 finalArray = Graph.Looper(arr);
 console.log("finalArray =");
 console.log(finalArray);
-
+// execute in parallel 
 
 
 

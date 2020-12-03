@@ -56,11 +56,11 @@ class Graph {
         let index =0;
         
         layersList.push(new Set(stArray));
-        let arr3 =this.FinalLayer(stArray,index,layersList);
+        this.FinalLayer(stArray,index,layersList);
         console.log("arr3 =");
-        console.log(arr3);
+        console.log(layersList);
         
-        return arr3;
+        return  layersList;
     }
 
     FinalLayer(sta,index,fl){                           // recursive function (custom bfs)
