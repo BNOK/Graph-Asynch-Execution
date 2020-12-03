@@ -52,40 +52,41 @@ class Graph {
     // find all layers ---------------------
     
     Looper(stArray){                               // wrapper function 
-        const layersList = new Array();
+        let layersList = new Array();
         let index =0;
-
+        
         layersList.push(new Set(stArray));
-        console.log("fl = " + layersList[0]);
-
-        return this.FinalLayer(stArray,index,layersList);
+        let arr3 =this.FinalLayer(stArray,index,layersList);
+        console.log("arr3 =");
+        console.log(arr3);
+        
+        return arr3;
     }
 
     FinalLayer(sta,index,fl){                           // recursive function (custom bfs)
         index += 1;
+        
         fl.push(new Set());
+           
         sta.forEach(element => {
-            const arr2 = new Array(this.graphList[element]);
-            arr2.forEach(item => fl[index].add(item));
+        let arr2 = new Array();
+        arr2= this.graphList.get(element);
+       
+        arr2.forEach(item => fl[index].add(item));
         });
+
         sta = Array.from(fl[index]);
-        if (sta == [])
+    
+        if (sta.length == 0 ){
+            console.log("done");
+            console.log(fl);
             return fl;
-        else
-            this.FinalLayer(sta);
-
-
+        }
+        else{    
+            this.FinalLayer(sta,index,fl);
+        } 
     }
     
-
-    // findnemo(element){                          // call back function for the foreach
-        
-    //     arr = this.graphList[element];
-    //     S= new Set(arr);
-    //     finalList[index].add(S);
-    // }
-
-
     //--------------------print the Graph----------------------------------------
     printGraph()
     {

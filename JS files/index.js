@@ -31,7 +31,9 @@ console.log("startingpoints print :");
 const arr =Graph.FindStart();
 console.log("arr ="+arr);
 // find all layers 
-Graph.Looper(arr);
+finalArray = Graph.Looper(arr);
+console.log("finalArray =");
+console.log(finalArray);
 
 
 
