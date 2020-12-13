@@ -20,6 +20,7 @@ class Graph {
 
     ShowSuccersors(node){
         console.log(Array.from(this.graphList[node]));
+        return Array.from(this.graphList[node]);
     }
 
     // find starting points ---------

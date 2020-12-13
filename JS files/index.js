@@ -77,12 +77,28 @@ stacker.push(func5);
 
 
 // execute in parallel 
+
+
+// recursive execution 
+
 async.parallel(stacker,function(err,result){
   console.log(result);
 })
+
+
+function RecEx(func){
+  let result = func ;
+  sucor = Array.from(func.values());
+  if (sucor ==[]){
+    return result ;
+  }
   
+  sucor.foreach(element => {
+    RecEx(element);
+  })
 
-
+  
+}
 
 
 
