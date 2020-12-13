@@ -1,4 +1,3 @@
-
 class Graph {
     // defining vertex array and
     // adjacent list
@@ -14,10 +13,13 @@ class Graph {
         this.graphList.set(vertex, []);
     }  
       
-    
     // adding edges w as the value of the key v 
     AddEdge(v,w) {
         this.graphList.get(v).push(w);
+    }
+
+    ShowSuccersors(node){
+        console.log(Array.from(this.graphList[node]));
     }
 
     // find starting points ---------
@@ -86,6 +88,8 @@ class Graph {
             this.FinalLayer(sta,index,fl);
         } 
     }
+
+    
     
     //--------------------print the Graph----------------------------------------
     printGraph()
@@ -116,6 +120,11 @@ class Graph {
         for(let i=0;i<x.length;i++){
             console.log(`temp[${i}] = ${x[i]}`);
         }
+    }
+
+    // ------------------- execute node recursively ---------------
+    RecExe(value,key,mp){
+        let node = key
     }
 }
 
