@@ -1,40 +1,47 @@
 const GP = require('./Graph');
-var async = require('async');
+var parallel = require('run-parallel');
 
 //-functions to execute-------
-let func0 =function(callback){
-  //perform action
-  callback(null,"task 0 is executed !")
+function fun0 () {
+  setTimeout(function () {
+  return "this is function 0 !";  
+  }, 200)
 }
-let func1 =function(callback){
-  //perform action
-  callback(null,"task 1 is executed !")
+function fun1(callback) {
+  setTimeout(function () {
+  return "this is function 1 !";  
+  }, 200)
 }
-let func2 =function(callback){
-  // perform action
-  callback(null,"task 2 is executed !")
+function fun2(callback) {
+  setTimeout(function () {
+  return "this is function 2 !"; 
+  }, 200)
 }
-let func3 =function(callback){
-  // perform action 
-  callback(null,"task 3 is executed !")
+function fun3(callback) {
+  setTimeout(function () {
+  return "this is function 3 !"; 
+  }, 200)
 }
-let func4 =function(callback){
-  // perform action 
-  callback(null,"task 4 is executed !")
+function fun4(callback) {
+  setTimeout(function () {
+  return "this is function 4 !";  
+  }, 200)
 }
-let func5 =function(callback){
-  // perform action 
-  callback(null,"task 5 is executed !")
+
+function fun5(callback) {
+  setTimeout(function () {
+  return "this is function 5 !"; 
+  }, 200)
 }
 // -------------------------------
 // pushing to array 
 let stacker=[];
-stacker.push(func0);
-stacker.push(func1);
-stacker.push(func2);
-stacker.push(func3);
-stacker.push(func4);
-stacker.push(func5);
+stacker.push(fun0);
+stacker.push(fun1);
+stacker.push(fun2);
+stacker.push(fun3);
+stacker.push(fun4);
+stacker.push(fun5);
 
 // --------------------------------------
 
@@ -77,28 +84,31 @@ stacker.push(func5);
 
 
 // execute in parallel 
+async function ExecuteNodes(nodesArray){
+  const resultArray = [];
+  for(let i=0; i<nodesArray.length ; i++){
+    let nodeRes =await nodesArray[i];
+    resultArray[i] = nodesRes;
+  }
+}
 
+ExecuteNodes(stacker)
 
 // recursive execution 
 
-async.parallel(stacker,function(err,result){
-  console.log(result);
-})
-
-
-function RecEx(func){
-  let result = func ;
-  sucor = Array.from(func.values());
-  if (sucor ==[]){
-    return result ;
-  }
+// async function RecEx(node){
+//   let succ = node.values();
   
-  sucor.foreach(element => {
-    RecEx(element);
-  })
-
   
-}
+//   if(succ=== [] ){
+//       return funresult;
+//   }  
+//   else{
+//       succ.foreach(element =>{
+//       RecEx(element);
+//     })
+//   }
+// }
 
 
 
