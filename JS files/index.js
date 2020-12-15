@@ -1,47 +1,22 @@
 const GP = require('./Graph');
-var parallel = require('run-parallel');
+var async = require('async');
 
 //-functions to execute-------
-function fun0 () {
-  setTimeout(function () {
-  return "this is function 0 !";  
-  }, 200)
-}
-function fun1(callback) {
-  setTimeout(function () {
-  return "this is function 1 !";  
-  }, 200)
-}
-function fun2(callback) {
-  setTimeout(function () {
-  return "this is function 2 !"; 
-  }, 200)
-}
-function fun3(callback) {
-  setTimeout(function () {
-  return "this is function 3 !"; 
-  }, 200)
-}
-function fun4(callback) {
-  setTimeout(function () {
-  return "this is function 4 !";  
-  }, 200)
-}
-
-function fun5(callback) {
-  setTimeout(function () {
-  return "this is function 5 !"; 
-  }, 200)
-}
+const func0 = Promise.resolve("task one !")
+const func1 = Promise.resolve("task two !")
+const func2 = Promise.resolve("task three !")
+const func3 = Promise.resolve("task four !")
+const func4 = Promise.resolve("task five !")
+const func5 = Promise.resolve("task six !")
 // -------------------------------
 // pushing to array 
 let stacker=[];
-stacker.push(fun0);
-stacker.push(fun1);
-stacker.push(fun2);
-stacker.push(fun3);
-stacker.push(fun4);
-stacker.push(fun5);
+stacker.push(func0);
+stacker.push(func1);
+stacker.push(func2);
+stacker.push(func3);
+stacker.push(func4);
+stacker.push(func5);
 
 // --------------------------------------
 
@@ -84,15 +59,22 @@ stacker.push(fun5);
 
 
 // execute in parallel 
-async function ExecuteNodes(nodesArray){
-  const resultArray = [];
-  for(let i=0; i<nodesArray.length ; i++){
-    let nodeRes =await nodesArray[i];
-    resultArray[i] = nodesRes;
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
   }
 }
 
-ExecuteNodes(stacker)
+async function ExecuteNodes(stacker){
+  const nodesRes = newArray(stacker.length)
+  await Promise.all(arr.map(async (i) => {
+    await sleep(10 - i);
+    console.log(i);
+  }));
+  
+}
+
+ExecuteNodes()
 
 // recursive execution 
 
