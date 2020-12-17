@@ -66,15 +66,14 @@ async function asyncForEach(array, callback) {
 }
 
 async function ExecuteNodes(stacker){
-  const nodesRes = newArray(stacker.length)
-  await Promise.all(arr.map(async (i) => {
-    await sleep(10 - i);
-    console.log(i);
-  }));
-  
+  const nodesRes = new Array(stacker.length)
+  asyncForEach(stacker,(elm) => {
+    console.log("resolved");
+    console.log(elm);
+  })
 }
 
-ExecuteNodes()
+ExecuteNodes(stacker)
 
 // recursive execution 
 
