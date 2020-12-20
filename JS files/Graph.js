@@ -18,7 +18,7 @@ class Graph {
         this.graphList.get(v).push(w);
     }
 
-    ShowSuccersors(node){
+    ShowSuccessors(node){
         console.log(Array.from(this.graphList[node]));
         return Array.from(this.graphList[node]);
     }

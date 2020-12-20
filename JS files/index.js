@@ -1,5 +1,6 @@
 const GP = require('./Graph');
 var async = require('async');
+const Graph = require('./Graph');
 
 //-functions to execute-------
 const func0 = Promise.resolve("task one !")
@@ -62,6 +63,10 @@ stacker.push(func5);
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);
+  }
+  const newArr = []
+  for (let index = 0; index < array.length; index++){
+    await callback1(newArr.concat(Graph.ShowSuccessors(array))) 
   }
 }
 
