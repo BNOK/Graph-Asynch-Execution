@@ -33,8 +33,6 @@ stacker.push(func10);
 
 // --------------------------------------
 
-
-
 // specify the number of vertecies 1
 let Graph = new GP(5);
 
@@ -74,25 +72,34 @@ console.log("-------------------------------------------------------------------
 
 
 // execute in parallel 
-async function asyncForEach(array, callback,callback1) {
+// const callback0 = function(array){
+//   const newArr = []
+//   for (let index = 0; index < array.length; index++){
+//     newArr = newArr.concat(Graph.ShowSuccessors(array))
+//     await callback1(newArr) 
+//   }
+// }
+
+async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);
   }
-  const newArr = []
-  for (let index = 0; index < array.length; index++){
-    await callback1(newArr.concat(Graph.ShowSuccessors(array))) 
-  }
+  
 }
 
 async function ExecuteNodes(stacker){
-  const nodesRes = new Array(stacker.length)
+  const nodesRes = new Array()
   asyncForEach(stacker,(elm) => {
     console.log("resolved");
+    
+    nodesRes.concat(Graph[elm])
     console.log(elm);
+    console.log(nodesRes)
   })
+
 }
 
-ExecuteNodes(stacker)
+ExecuteNodes(Array.from(finalArray[0]))
 
 // recursive execution 
 
