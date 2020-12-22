@@ -60,8 +60,8 @@ class Graph {
         
         layersList.push(new Set(stArray));
         this.FinalLayer(stArray,index,layersList);
-        console.log("arr3 =");
-        console.log(layersList);
+        // console.log("arr3 =");
+        // console.log(layersList);
         
         return  layersList;
     }
@@ -82,7 +82,7 @@ class Graph {
     
         if (sta.length == 0 ){
             console.log("done");
-            console.log(fl);
+            
             return fl;
         }
         else{    
