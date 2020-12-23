@@ -19,8 +19,8 @@ class Graph {
     }
 
     ShowSuccessors(node){
-        console.log(Array.from(this.graphList[node]));
-        return Array.from(this.graphList[node]);
+        //console.log(Array.from(this.graphList.get(node)));
+        return Array.from(this.graphList.get(node));
     }
 
     // find starting points ---------
