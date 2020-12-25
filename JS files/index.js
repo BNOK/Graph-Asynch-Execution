@@ -91,27 +91,41 @@ async function ExecuteNodes(stacker){
   let nodesRes = new Array()
   asyncForEach(stacker,(elm) => {
     console.log("resolved : " + elm); 
-    nodesRes = nodesRes.concat(Graph.ShowSuccessors(elm))
+    nodesRes = Graph.ShowSuccessors(elm)
+    if (nodesRes === []){
+      console.log("execution done")
+      return null
+    }
+    else {
+      ExecuteNodes(nodesRes)
+    }
   })
-  return nodesRes
+ 
 }
+ExecuteNodes(Array.from(finalArray[0]))
 
-const noder =ExecuteNodes(Array.from(finalArray[0]))
-console.log("noder =" + noder)
-RecEx(noder)
+
+// const noder =ExecuteNodes(Array.from(finalArray[0]))
+// console.log(noder) // works fine 
+
+// RecEx(noder)
+
 // recursive execution 
 
-async function RecEx(nodi){
+// async function RecEx(nodi){
   
-  if(nodi=== [] ){
-      console.log("noder is empty")
-      return null ;
-  }  
-  else{
-      console.log("executed")
-      ExecuteNodes(nodi)
-  }
-}
+//   if(nodi=== [] ){
+//       console.log("noder is empty")
+//       return null ;
+//   }  
+//   else{
+//       console.log(nodi)
+//       let x = ExecuteNodes(nodi)
+//       RecEx(x)
+//   }
+// }
+
+
 
 
 
