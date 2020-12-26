@@ -84,23 +84,24 @@ async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);
   }
-  
 }
 
 async function ExecuteNodes(stacker){
   let nodesRes = new Array()
   asyncForEach(stacker,(elm) => {
-    console.log("resolved : " + elm); 
+    // console.log("resolved : " + typeof(elm.resolve))
+    elm.then((value) =>{
+      console.log(value)
+    }) 
     nodesRes = Graph.ShowSuccessors(elm)
     if (nodesRes === []){
-      console.log("execution done")
+      console.log("Execution done")
       return null
     }
     else {
       ExecuteNodes(nodesRes)
     }
   })
- 
 }
 ExecuteNodes(Array.from(finalArray[0]))
 
