@@ -91,18 +91,22 @@ async function ExecuteNodes(stacker){
   asyncForEach(stacker,(elm) => {
     // console.log("resolved : " + typeof(elm.resolve))
     elm.then((value) =>{
-      console.log(value)
+      console.log("executing :"+ value)
     }) 
     nodesRes = Graph.ShowSuccessors(elm)
-    if (nodesRes === []){
+    if (nodesRes == []){
       console.log("Execution done")
       return null
     }
     else {
+      elm.then((value) =>{
+        console.log("finished executing : "+ value)
+      }) 
       ExecuteNodes(nodesRes)
     }
   })
 }
+
 ExecuteNodes(Array.from(finalArray[0]))
 
 

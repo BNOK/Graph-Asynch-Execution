@@ -105,14 +105,22 @@ class Graph {
             // for the vertex
             var get_values = this.graphList.get(i);
             var conc = "";
+            i.then((value) => {
+                conc = value 
+            })
  
             // iterate over the adjacency list
             // concatenate the values into a string
-            for (var j of get_values)
-                conc += j + " ";
+            for (var j of get_values){
+                j.then((value1) => {
+                    console.log(conc+ " -> " +value1 )
+                })
+            }
+                //conc += j + " ";
  
             // print the vertex and its adjacency list
-            console.log(i + " -> " + conc);
+            //console.log(i + " -> " + conc);
+            
         }
     }
 
