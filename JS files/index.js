@@ -3,7 +3,9 @@ var async = require('async');
 
 
 //-functions to execute-------
-const func0 = Promise.resolve("task zero !")
+const func0 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task zero !"),1000)
+})
 const func1 = Promise.resolve("task one !")
 const func2 = Promise.resolve("task two !")
 const func3 = Promise.resolve("task three !")
@@ -55,7 +57,7 @@ Graph.AddEdge(func4,func10);
 
 // print the Graph
 console.log("graph print :");
-Graph.printGraph();
+//Graph.printGraph();
 
 
 
@@ -68,73 +70,46 @@ finalArray = Graph.Looper(arr);
 console.log("finalArray =");
 console.log(finalArray);
 
-console.log("---------------------------------------------------------------------------------------------")
+console.log("---------------------------- sorting is done -----------------------------------------------------------------")
 
-
-// execute in parallel 
-// const callback0 = function(array){
-//   const newArr = []
-//   for (let index = 0; index < array.length; index++){
-//     newArr = newArr.concat(Graph.ShowSuccessors(array))
-//     await callback1(newArr) 
-//   }
-// }
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
+    console.log(" start executing task number :" + index)
     await callback(array[index], index, array);
   }
 }
 
-async function ExecuteNodes(stacker){
-  let nodesRes = new Array()
-  asyncForEach(stacker,(elm) => {
-    // console.log("resolved : " + typeof(elm.resolve))
-    elm.then((value) =>{
-      console.log("executing :"+ value)
-    }) 
-    nodesRes = Graph.ShowSuccessors(elm)
-    if (nodesRes == []){
-      console.log("Execution done")
-      return null
-    }
-    else {
-      elm.then((value) =>{
-        console.log("finished executing : "+ value)
-      }) 
-      ExecuteNodes(nodesRes)
-    }
+async function Executer(stacker){
+  let nodesRes= new Array()
+  asyncForEach(stacker,(elm,ind,arr) =>{
+      console.log(arr.length)
   })
+  
 }
 
-ExecuteNodes(Array.from(finalArray[0]))
+Executer(finalArray[0])
 
-
-// const noder =ExecuteNodes(Array.from(finalArray[0]))
-// console.log(noder) // works fine 
-
-// RecEx(noder)
-
-// recursive execution 
-
-// async function RecEx(nodi){
-  
-//   if(nodi=== [] ){
-//       console.log("noder is empty")
-//       return null ;
-//   }  
-//   else{
-//       console.log(nodi)
-//       let x = ExecuteNodes(nodi)
-//       RecEx(x)
-//   }
+// async function ExecuteNodes(stacker){
+//   let nodesRes = new Array()
+//   asyncForEach(stacker,(elm) => {
+//     nodesRes = Graph.ShowSuccessors(elm)
+//     if (nodesRes == []){
+//       //console.log("Execution done")
+//       return null
+//     }
+//     else {
+//       elm.then((value) =>{
+//         console.log("finished executing : " + value)
+//       }) 
+//       ExecuteNodes(nodesRes)
+//     }
+//   })
 // }
 
+//ExecuteNodes(Array.from(finalArray[0]))
 
-
-
-
-
-
-
-
+// simpler form of parallel 
+// Promise.all(finalArray[1]).then(value => {
+//   console.log(value)
+// })

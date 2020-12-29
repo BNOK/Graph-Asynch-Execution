@@ -27,7 +27,7 @@ class Graph {
     X= new Array();
     FindStart(){
         let temp = Array.from(this.graphList.keys()); // get the keys(vertecies) in the form of array
-        console.log("origin =" +temp);
+        //console.log("origin =" +temp);
         this.graphList.forEach(values => {
             const arr1 =values;
            
@@ -114,6 +114,7 @@ class Graph {
             for (var j of get_values){
                 j.then((value1) => {
                     console.log(conc+ " -> " +value1 )
+                    
                 })
             }
                 //conc += j + " ";
@@ -122,6 +123,7 @@ class Graph {
             //console.log(i + " -> " + conc);
             
         }
+        
     }
 
     //-----------------print starting points-----------
