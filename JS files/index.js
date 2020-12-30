@@ -6,16 +6,36 @@ var async = require('async');
 const func0 = new Promise((resolve,reject) => {
   let wait = setTimeout(resolve("task zero !"),1000)
 })
-const func1 = Promise.resolve("task one !")
-const func2 = Promise.resolve("task two !")
-const func3 = Promise.resolve("task three !")
-const func4 = Promise.resolve("task four !")
-const func5 = Promise.resolve("task five !")
-const func6 = Promise.resolve("task six !")
-const func7 = Promise.resolve("task seven !")
-const func8 = Promise.resolve("task eight !")
-const func9 = Promise.resolve("task nine !")
-const func10 = Promise.resolve("task ten !")
+const func1 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task one !"),2000)
+})
+const func2 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task two !"),2500)
+})
+const func3 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task three !"),3000)
+})
+const func4 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task four !"),3500)
+})
+const func5 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task five !"),4000)
+})
+const func6 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task six !"),500)
+})
+const func7 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task seven !"),1000)
+})
+const func8 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task eight !"),6000)
+})
+const func9 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task nine !"),100)
+})
+const func10 = new Promise((resolve,reject) => {
+  let wait = setTimeout(resolve("task ten !"),10000)
+})
 
 // -------------------------------
 // pushing to array 
@@ -75,39 +95,27 @@ console.log("---------------------------- sorting is done ----------------------
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
-    console.log(" start executing task number :" + index)
+    array[index].then((value) => console.log("start executing :" + value))
     await callback(array[index], index, array);
+    array[index].then((value) => console.log("finished executing :" + value))
   }
 }
 
-async function Executer(stacker){
-  let nodesRes= new Array()
-  asyncForEach(stacker,(elm,ind,arr) =>{
-      console.log(arr.length)
+async function ExecuteNodes(stacker){
+  let nodesRes = new Array()
+  asyncForEach(stacker,(elm) => {
+    nodesRes = Graph.ShowSuccessors(elm)
+    if (nodesRes == []){
+      console.log("Execution done")
+      return null
+    }
+    else {
+      ExecuteNodes(nodesRes)
+    }
   })
-  
 }
 
-Executer(finalArray[0])
-
-// async function ExecuteNodes(stacker){
-//   let nodesRes = new Array()
-//   asyncForEach(stacker,(elm) => {
-//     nodesRes = Graph.ShowSuccessors(elm)
-//     if (nodesRes == []){
-//       //console.log("Execution done")
-//       return null
-//     }
-//     else {
-//       elm.then((value) =>{
-//         console.log("finished executing : " + value)
-//       }) 
-//       ExecuteNodes(nodesRes)
-//     }
-//   })
-// }
-
-//ExecuteNodes(Array.from(finalArray[0]))
+ExecuteNodes(Array.from(finalArray[0]))
 
 // simpler form of parallel 
 // Promise.all(finalArray[1]).then(value => {
