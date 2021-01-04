@@ -114,8 +114,7 @@ class Graph {
                 j.then((val1) => {
                     console.log( conc + " -> " + val1 + "\n") 
                 })
-            }   
-            
+            }     
         }
     }
 
