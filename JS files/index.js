@@ -165,23 +165,29 @@ async function asyncForEach(array, callback) {
 }
 
 async function ExecuteNodes(stacker){
+  var ind =0
   let nodesRes = new Array()
+  let checker = stacker
+  
   asyncForEach(stacker,(elm) => {
     
     elm.then((res) => {
       console.log(res)
-      console.log("finished executing :" + res)
+      console.log("finished executing :" +res)
+      ind++
+      
     })
-    
-    nodesRes = Graph.ShowSuccessors(elm)
-    if (nodesRes == []){
-      console.log("Execution done")
-      return null
-    }
-    else {
-      ExecuteNodes(nodesRes)
-    }
+    nodesRes.concat(Graph.ShowSuccessors(elm))
   })
+  
+  if (nodesRes == []){
+    console.log("Execution done")
+    return null
+  }
+  else if (ind == checker.length ) {
+    ExecuteNodes(nodesRes)
+  }
+  
 }
 
 ExecuteNodes(Array.from(finalArray[0]))
