@@ -1,81 +1,83 @@
 const GP = require('./Graph');
 var async = require('async');
+const { executionAsyncResource } = require('async_hooks');
+
 
 
 // function to print 
 const funct0 = new Promise((resolve,reject) => {
-  resolve("task zero !") 
-})
+  resolve("task zero !") ;
+});
 const funct1 = new Promise((resolve,reject) => {
- resolve("task one !")
-})
+ resolve("task one !");
+});
 const funct2 = new Promise((resolve,reject) => {
-  resolve("task two !")
-})
+  resolve("task two !");
+});
 const funct3 = new Promise((resolve,reject) => {
- resolve("task three !")
-})
+ resolve("task three !");
+});
 const funct4 = new Promise((resolve,reject) => {
- resolve("task four !")
-}) 
+ resolve("task four !");
+}) ;
 const funct5 = new Promise((resolve,reject) => {
-  resolve("task five !")
-})
+  resolve("task five !");
+});
 const funct6 = new Promise((resolve,reject) => {
- resolve("task six !")
-})
+ resolve("task six !");
+});
 const funct7 = new Promise((resolve,reject) => {
- resolve("task seven !")
-})
+ resolve("task seven !");
+});
 const funct8 = new Promise((resolve,reject) => {
-  resolve("task eight !")
-})
+  resolve("task eight !");
+});
 const funct9 = new Promise((resolve,reject) => {
- resolve("task nine !")
-})
+ resolve("task nine !");
+});
 const funct10 = new Promise((resolve,reject) => {
- resolve("task ten !")
-})
+ resolve("task ten !");
+});
 
 
 //functions to execute-------
 const func0 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task zero !") },1000)
-})
+  setTimeout(() => {resolve("task zero !")},1000);
+});
 const func1 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task one !")},2000)
-})
+  setTimeout(() => {resolve("task one !")},2000);
+});
 const func2 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task two !")},2500)
-})
+  setTimeout(() => {resolve("task two !")},2500);
+});
 const func3 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task three !")},3000)
-})
+  setTimeout(() => {resolve("task three !")},3000);
+});
 const func4 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task four !")},3500)
-})
+  setTimeout(() => {resolve("task four !")},3500);
+});
 const func5 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task five !")},4000)
-})
+  setTimeout(() => {resolve("task five !")},4000);
+});
 const func6 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task six !")},500)
-})
+  setTimeout(() => {resolve("task six !")},500);
+});
 const func7 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task seven !")},1000)
-})
+  setTimeout(() => {resolve("task seven !")},1000);
+});
 const func8 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task eight !")},6000)
-})
+  setTimeout(() => {resolve("task eight !")},6000);
+});
 const func9 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task nine !")},100)
-})
+  setTimeout(() => {resolve("task nine !")},1000);
+});
 const func10 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task ten !")},10000)
-})
+  setTimeout(() => {resolve("task ten !")},1000);
+});
 
 // -------------------------------
 // pushing to array (printable)
-let stackers=[]
+let stackers=[];
 stackers.push(funct0);
 stackers.push(funct1);
 stackers.push(funct2);
@@ -87,6 +89,8 @@ stackers.push(funct7);
 stackers.push(funct8);
 stackers.push(funct9);
 stackers.push(funct10);
+
+
 // pushing to array (executable)
 let stacker=[]
 stacker.push(func0);
@@ -105,13 +109,13 @@ stacker.push(func10);
 // --------------------------------------
 
 // specify the number of vertecies 1
-let Graph = new GP(5);
+let Graph = new GP(10);
 let Graph1 = new GP(10);
 
 // add the vertecies
 for (let i =0; i<stacker.length ; i++){
   Graph.AddVertex(stacker[i]);
-  Graph1.AddVertex(stackers[i])
+  Graph1.AddVertex(stackers[i]);
 }
 
 // add the edges (executable)
@@ -147,52 +151,71 @@ Graph1.printGraph();
 // find starting points 
 console.log("startingpoints print :");
 const arr =Graph.FindStart();
-console.log("arr ="+arr);
+
 // find all layers 
 finalArray = Graph.Looper(arr);
-console.log("finalArray =");
-//console.log(finalArray);
-
-console.log("---------------------------- sorting is done -----------------------------------------------------------------")
+console.log(finalArray);
 
 
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    array[index].then((value) => console.log("start executing :" + value))
-    await callback(array[index], index, array);
+console.log("---------------------------- sorting is done -----------------------------------------------------------------");
+
+
+// async function asyncForEach(array) {
+//   let nodies = new Array()
+//   console.log(nodies.length)
+//   for (let index of array) {
     
-  }
-}
-
-async function ExecuteNodes(stacker){
-  var ind =0
-  let nodesRes = new Array()
-  let checker = stacker
-  
-  asyncForEach(stacker,(elm) => {
+//     await index;
+//     nodies = nodies.concat(Graph.ShowSuccessors(index));
     
-    elm.then((res) => {
-      console.log(res)
-      console.log("finished executing :" +res)
-      ind++
-      
-    })
-    nodesRes.concat(Graph.ShowSuccessors(elm))
-  })
+//   }
   
-  if (nodesRes == []){
-    console.log("Execution done")
-    return null
-  }
-  else if (ind == checker.length ) {
-    ExecuteNodes(nodesRes)
-  }
-  
-}
+//   return nodies
+// }
 
-ExecuteNodes(Array.from(finalArray[0]))
+// async function ExecuteNodes(stacker){
+  
+//   let nodesRes = asyncForEach(stacker);
+  
+//   if (nodesRes != []){
+    
+//     ExecuteNodes(nodesRes);
+//   }
+//   else {
+//     return null;
+//   }
+// }
+
+// ExecuteNodes(Array.from(finalArray[0]));
+
 
 // simpler form of parallel 
 // Promise.all(finalArray[1]).then(value => {
 //   console.log(value)
 // })
+
+//await 
+async function Executer(array){
+  let M = new Array();
+  console.log("starting execution :");
+  for (let item of array){
+    
+    let v = await item;
+    M = M.concat(Graph.ShowSuccessors(item));
+    console.log(v)
+  }
+  console.log("finished executing")
+  
+  console.log(M.length)
+
+
+  if (M.length != 0){
+    Executer(M);
+  }
+  else {
+    console.log("DONE")
+    return null
+  } 
+}
+
+Executer(Array.from(finalArray[0]))
