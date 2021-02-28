@@ -1,6 +1,7 @@
 const GP = require('./Graph');
 var async = require('async');
 const { executionAsyncResource } = require('async_hooks');
+const { promises } = require('fs');
 
 
 
@@ -45,25 +46,25 @@ const func0 = new Promise((resolve,reject) => {
   setTimeout(() => {resolve("task zero !")},1000);
 });
 const func1 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task one !")},2000);
+  setTimeout(() => {resolve("task one !")},10000);
 });
 const func2 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task two !")},2500);
+  setTimeout(() => {resolve("task two !")},3500);
 });
 const func3 = new Promise((resolve,reject) => {
   setTimeout(() => {resolve("task three !")},3000);
 });
 const func4 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task four !")},3500);
+  setTimeout(() => {resolve("task four !")},4000);
 });
 const func5 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task five !")},4000);
+  setTimeout(() => {resolve("task five !")},1000);
 });
 const func6 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task six !")},500);
+  setTimeout(() => {resolve("task six !")},1000);
 });
 const func7 = new Promise((resolve,reject) => {
-  setTimeout(() => {resolve("task seven !")},1000);
+  setTimeout(() => {resolve("task seven !")},10000);
 });
 const func8 = new Promise((resolve,reject) => {
   setTimeout(() => {resolve("task eight !")},6000);
@@ -144,7 +145,7 @@ Graph1.AddEdge(funct4,funct10);
 
 // print the Graph
 console.log("graph print :");
-Graph1.printGraph();
+//Graph1.printGraph();
 
 
 
@@ -195,21 +196,24 @@ console.log("---------------------------- sorting is done ----------------------
 // })
 
 //await 
+
 async function Executer(array){
   let M = new Array();
+
   console.log("starting execution :");
-  for (let item of array){
+  for (i=0;i<array.length;i++){
+    //execution
+
     
-    let v = await item;
-    M = M.concat(Graph.ShowSuccessors(item));
-    console.log(v)
+    //some condition that wont let us recursive this function until we have a met condition
+    
+    M = M.concat(Graph.ShowSuccessors(array[i]));
+    console.log(checker)
   }
   console.log("finished executing")
   
-  console.log(M.length)
-
-
-  if (M.length != 0){
+  if (M.length != 0 & checker){
+    checker =false;
     Executer(M);
   }
   else {
@@ -217,5 +221,28 @@ async function Executer(array){
     return null
   } 
 }
+//////////////
+//Executer(Array.from(finalArray[0]))
+/////////////// 
 
-Executer(Array.from(finalArray[0]))
+// another executer
+async function Executer2(graphArray){
+  let arriRes = new Array();
+  console.log("second executer");
+  for(let i=0; i< graphArray.length ;i++){
+    console.log("start")
+    let  x = await Promise.all(graphArray[i])
+    arriRes.push(x);
+    console.log(x);
+    console.log("finish")
+  }
+
+  // for(let i=0; i< arriRes.length ;i++){
+    
+  //   console.log(arriRes[i]);
+  //   console.log("second");
+  // }
+}
+/////////////////
+Executer2(finalArray)
+////////////////
