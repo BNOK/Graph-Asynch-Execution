@@ -244,5 +244,40 @@ async function Executer2(graphArray){
   // }
 }
 /////////////////
-Executer2(finalArray)
+//Executer2(finalArray)
 ////////////////
+//-----------
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index]);
+  }
+}
+//----------
+
+//final executor ?
+function Executor3(array){
+  let subArray = new Array();
+  console.log("executor 3 :")
+
+  for(let i=0; i< array.length ;i++){
+    console.log("inside for")
+    array[i].then((value) =>{
+      console.log(value);
+      subArray = Graph.ShowSuccessors(array[i])
+      console.log(subArray)
+      if(subArray.length !=0){
+        console.log("recursive");
+        Executor3(subArray);
+      }
+      else{
+        console.log("DONE");
+        return null;
+      }
+    })
+
+  }
+ 
+}
+/////////////
+Executor3(Array.from(finalArray[0]))
+/////////////
