@@ -255,22 +255,25 @@ async function asyncForEach(array, callback) {
 //----------
 
 //final executor ?
+let index =0;
 function Executor3(array){
+  
   let subArray = new Array();
-  console.log("executor 3 :")
+  console.log("function begins !!")
 
   for(let i=0; i< array.length ;i++){
-    console.log("inside for")
+    console.log("start !" + index)
+    index++;
     array[i].then((value) =>{
       console.log(value);
       subArray = Graph.ShowSuccessors(array[i])
-      console.log(subArray)
+      
       if(subArray.length !=0){
-        console.log("recursive");
+        console.log("finished !");
         Executor3(subArray);
       }
       else{
-        console.log("DONE");
+        console.log("no more successors !!");
         return null;
       }
     })
