@@ -255,15 +255,15 @@ async function asyncForEach(array, callback) {
 //----------
 
 //final executor ?
-let index =0;
+
 function Executor3(array){
   
   let subArray = new Array();
   console.log("function begins !!")
 
   for(let i=0; i< array.length ;i++){
-    console.log("start !" + index)
-    index++;
+    console.log("start !")
+    
     array[i].then((value) =>{
       console.log(value);
       subArray = Graph.ShowSuccessors(array[i])
