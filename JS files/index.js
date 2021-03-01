@@ -259,7 +259,7 @@ async function asyncForEach(array, callback) {
 function Executor3(array){
   
   let subArray = new Array();
-  console.log("function begins !!")
+  
 
   for(let i=0; i< array.length ;i++){
     console.log("start !")
