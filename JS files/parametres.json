@@ -1,55 +1,55 @@
 [{
-    "name" :"function0",
+    "name" :"function 0",
     "duration" : 1000,
     "successors" : [1,2]
 },
 {
-    "name" :"function1",
+    "name" :"function 1",
     "duration" : 10000,
     "successors" : [3,4]
 },
 {
-    "name" :"function2",
+    "name" :"function 2",
     "duration" : 3500,
     "successors" : [5,6]
 },
 {
-    "name" :"function3",
+    "name" :"function 3",
     "duration" : 3000,
     "successors" : [7,8]
 },
 {
-    "name" :"function4",
+    "name" :"function 4",
     "duration" : 4000,
     "successors" : [9,10]
 },
 {
-    "name" :"function5",
+    "name" :"function 5",
     "duration" : 1000,
     "successors" : []
 },
 {
-    "name" :"function6",
+    "name" :"function 6",
     "duration" : 1000,
     "successors" : []
 },
 {
-    "name" :"function7",
+    "name" :"function 7",
     "duration" : 7000,
     "successors" : []
 },
 {
-    "name" :"function8",
+    "name" :"function 8",
     "duration" : 500,
     "successors" : []
 },
 {
-    "name" :"function9",
+    "name" :"function 9",
     "duration" : 2000,
     "successors" : []
 },
 {
-    "name" :"function10",
+    "name" :"function 10",
     "duration" : 3000,
     "successors" : []
 }]
