@@ -1,4 +1,6 @@
-class Graph {
+const fs = require('fs')
+class Graph 
+{
     // defining vertex array and
     // adjacent list
     constructor(noOfVertices) {
@@ -23,9 +25,9 @@ class Graph {
         return Array.from(this.graphList.get(node));
     }
 
-    GenericFunction(taskname,duration){
+    GenericFunction(taskName,duration){
         return new Promise((resolve,reject) =>{
-            setTimeout(() => {resolve(taskname)},duration);
+            setTimeout(() => {resolve(taskName)},duration);
         });
     }
 
@@ -133,26 +135,23 @@ class Graph {
 
     // ------------------- JSON file operations ---------------
     MakeFunctions(filePath){
-        let functionArray = new Array();
+        let finalResult = new Array();
     
-        fs.readFile(filePath, 'utf8', (err, data) => {
-            if (err) {
-                console.log("Error reading file from disk:", err)
-                return
-            }
-            try {
-                const testing = JSON.parse(data)
-                for(let i=0;i<testing.length;i++){
-                    let pro = GenericFunction(data[i].name,data[i].duration);
-                    console.log(pro)
-                    functionArray.push(pro);    
-                }
-                console.log("function making is done !");
-                return functionArray;
-            } catch(err) {
-                console.log('Error parsing JSON string:', err)
-            }
-        })  
+        const data = fs.readFileSync(filePath, {encoding : 'utf8'});
+        
+        let fileContent = JSON.parse(data);
+        
+        for(let i=0;i<fileContent.length;i++){
+            let temp = new Promise((resolve,reject) =>{
+                console.log("name : ",fileContent[i].name);
+                setTimeout(() => {resolve(fileContent[i].name)},fileContent[i].duration);
+            }); 
+            finalResult.push(temp);  
+            this.AddVertex(temp);
+        }
+        console.log("this graphlist", this.graphList);
+        
+        return finalResult;
     }
 }
 
@@ -161,3 +160,8 @@ module.exports = Graph;
 
 
 
+///////////
+// const func0 = new Promise((resolve,reject) => {
+//     setTimeout(() => {resolve("task zero !")},1000);
+//   });
+///////////
