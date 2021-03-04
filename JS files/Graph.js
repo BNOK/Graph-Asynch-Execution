@@ -23,6 +23,12 @@ class Graph {
         return Array.from(this.graphList.get(node));
     }
 
+    GenericFunction(taskname,duration){
+        return new Promise((resolve,reject) =>{
+            setTimeout(() => {resolve(taskname)},duration);
+        });
+    }
+
     // find starting points ---------
     X= new Array();
     FindStart(){
@@ -125,13 +131,33 @@ class Graph {
         }
     }
 
-    // ------------------- execute node recursively ---------------
-    RecExe(value,key,mp){
-        let node = key
+    // ------------------- JSON file operations ---------------
+    MakeFunctions(filePath){
+        let functionArray = new Array();
+    
+        fs.readFile(filePath, 'utf8', (err, data) => {
+            if (err) {
+                console.log("Error reading file from disk:", err)
+                return
+            }
+            try {
+                const testing = JSON.parse(data)
+                for(let i=0;i<testing.length;i++){
+                    let pro = GenericFunction(data[i].name,data[i].duration);
+                    console.log(pro)
+                    functionArray.push(pro);    
+                }
+                console.log("function making is done !");
+                return functionArray;
+            } catch(err) {
+                console.log('Error parsing JSON string:', err)
+            }
+        })  
     }
 }
 
-
-
-
 module.exports = Graph;
+
+
+
+

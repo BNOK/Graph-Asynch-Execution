@@ -2,6 +2,7 @@ const GP = require('./Graph');
 var async = require('async');
 const { executionAsyncResource } = require('async_hooks');
 const { promises } = require('fs');
+const fs = require('fs')
 
 
 
@@ -265,7 +266,7 @@ function Executor3(array){
     console.log("start !")
     
     array[i].then((value) =>{
-      console.log(value);
+      console.log("executed : " + value);
       subArray = Graph.ShowSuccessors(array[i])
       
       if(subArray.length !=0){
