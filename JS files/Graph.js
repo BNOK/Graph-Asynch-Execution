@@ -12,7 +12,7 @@ class Graph
   
     // adding vertex as key to a Map 
     AddVertex(vertex){
-        this.graphList.set(vertex, []);
+        this.graphList.set(vertex, new Array());
     }  
       
     // adding edges w as the value of the key v 
@@ -20,6 +20,21 @@ class Graph
         this.graphList.get(v).push(w);
     }
 
+    //show successors using JSON
+    SetEdeges(data){
+        let n= Array.from(this.graphList.keys());
+
+        for(let i=0;i<n.length;i++){
+            let linkArray = data[i].link
+
+            for(let j=0;j<linkArray;i++){
+                let o =linkArray[j];
+                this.graphList.get(n[i]).push(n[o]);
+            }
+        }
+
+    }
+    //show successors using code 
     ShowSuccessors(node){
         //console.log(Array.from(this.graphList.get(node)));
         return Array.from(this.graphList.get(node));
@@ -143,14 +158,36 @@ class Graph
         
         for(let i=0;i<fileContent.length;i++){
             let temp = new Promise((resolve,reject) =>{
-                console.log("name : ",fileContent[i].name);
+                //console.log("name : ",fileContent[i].name);
                 setTimeout(() => {resolve(fileContent[i].name)},fileContent[i].duration);
             }); 
             finalResult.push(temp);  
             this.AddVertex(temp);
         }
-        console.log("this graphlist", this.graphList);
+        console.log("finalresult:",finalResult);
         
+        console.log("setting the edges :");
+        //------------ setting the edges ------
+        let n = Array.from(this.graphList.keys());
+        
+        for(let i=0;i<n.length;i++){
+            let linkArray = fileContent[i].link
+            console.log("linkarray", linkArray.length);
+            
+            if (linkArray.length >0){
+                
+                for(let j=0;j<linkArray.length;j++){
+                    console.log("i =" ,i)
+                    let o = linkArray[j];
+                    //console.log("head",i)
+                    this.graphList.get(n[i]).push(n[o]);
+                    
+                }
+            }
+        }
+        //-----------------
+        console.log(this.graphList);
+
         return finalResult;
     }
 }
@@ -164,4 +201,5 @@ module.exports = Graph;
 // const func0 = new Promise((resolve,reject) => {
 //     setTimeout(() => {resolve("task zero !")},1000);
 //   });
+//Graph.AddEdge(nodesArray[0],nodesArray[1]);
 ///////////

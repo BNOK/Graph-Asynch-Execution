@@ -65,21 +65,11 @@ let nodesArray = Graph.MakeFunctions("./parametres.json")
 
 // add the vertecies
 for (let i =0; i<nodesArray.length ; i++){
-  
   Graph1.AddVertex(stackers[i]);
 }
 
 // add the edges (executable)
-Graph.AddEdge(nodesArray[0],nodesArray[1]);
-Graph.AddEdge(nodesArray[0],nodesArray[2]);
-Graph.AddEdge(nodesArray[1],nodesArray[3]);
-Graph.AddEdge(nodesArray[1],nodesArray[4]);
-Graph.AddEdge(nodesArray[2],nodesArray[5]);
-Graph.AddEdge(nodesArray[2],nodesArray[6]);
-Graph.AddEdge(nodesArray[3],nodesArray[7]);
-Graph.AddEdge(nodesArray[3],nodesArray[8]);
-Graph.AddEdge(nodesArray[4],nodesArray[9]);
-Graph.AddEdge(nodesArray[4],nodesArray[10]);
+
 
 //add the edges (printable)
 Graph1.AddEdge(funct0,funct1);
@@ -94,7 +84,7 @@ Graph1.AddEdge(funct4,funct9);
 Graph1.AddEdge(funct4,funct10);
 
 // print the Graph
-console.log("graph print :");
+//console.log("graph print :");
 //Graph1.printGraph();
 
 
@@ -105,7 +95,7 @@ const arr =Graph.FindStart();
 
 // find all layers 
 finalArray = Graph.Looper(arr);
-console.log(finalArray);
+//console.log(finalArray);
 
 
 console.log("--------------------- sorting is done ------------------------------------------");
