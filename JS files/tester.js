@@ -87,15 +87,33 @@ const Gp= require('./Graph');
 /////////
 
 //------ testing --------
-let Graph = new Gp(10);
+// let Graph = new Gp(10);
 
-let nodesArray = Graph.MakeFunctions("./parametres.json")
-nodesArray[0].then((result) => {
-    console.log(result)
-}).catch((err) => {
-    console.log("error :",err);
-});
-//console.log(nodesArray);
+// let nodesArray = Graph.MakeFunctions("./parametres.json")
+// nodesArray[0].then((result) => {
+//     console.log(result)
+// }).catch((err) => {
+//     console.log("error :",err);
+// });
+// //console.log(nodesArray);
 
-Graph.AddEdge(nodesArray[0],nodesArray[1]);
+// Graph.AddEdge(nodesArray[0],nodesArray[1]);
 //console.log(Graph.graphList);
+
+
+//--------- beauty ---------
+let finalResult = new Array();
+    
+const data = fs.readFileSync("./parametres.json", {encoding : 'utf8'});
+
+let fileContent = Object.values(JSON.parse(data));
+
+for(let i=0;i<fileContent.length;i++){
+    let temp = new Promise((resolve,reject) =>{
+        //console.log("name : ",fileContent[i].name);
+        setTimeout(() => {resolve(fileContent[i].name)},fileContent[i].duration);
+    }); 
+    finalResult.push(temp);  
+} 
+    
+console.log("finalresult:",finalResult);

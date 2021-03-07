@@ -1,55 +1,57 @@
-[{
-    "name" :"function 0",
-    "duration" : 1000,
-    "link" : [1,2]
-},
 {
-    "name" :"function 1",
-    "duration" : 10000,
-    "link" : [3,4]
-},
-{
-    "name" :"function 2",
-    "duration" : 3500,
-    "link" : [5,6]
-},
-{
-    "name" :"function 3",
-    "duration" : 3000,
-    "link" : [7,8]
-},
-{
-    "name" :"function 4",
-    "duration" : 4000,
-    "link" : [9,10]
-},
-{
-    "name" :"function 5",
-    "duration" : 1000,
-    "link" : []
-},
-{
-    "name" :"function 6",
-    "duration" : 1000,
-    "link" : []
-},
-{
-    "name" :"function 7",
-    "duration" : 7000,
-    "link" : []
-},
-{
-    "name" :"function 8",
-    "duration" : 500,
-    "link" : []
-},
-{
-    "name" :"function 9",
-    "duration" : 2000,
-    "link" : []
-},
-{
-    "name" :"function 10",
-    "duration" : 3000,
-    "link" : []
-}]
+    "0" :{
+                "name" :"function 0",
+                "duration" : 1000,
+                "link" : [1,2]
+            },
+    "1" :{
+                "name" :"function 1",
+                "duration" : 10000,
+                "link" : [3,4]
+            },
+    "2": {   
+                "name" :"function 2",
+                "duration" : 3500,
+                "link" : [5,6]
+            },
+    "3" :{
+                "name" :"function 3",
+                "duration" : 3000,
+                "link" : [7,8]
+            },
+    "4" :{
+                "name" :"function 4",
+                "duration" : 4000,
+                "link" : [9,10]
+            },
+    "5" :{
+                "name" :"function 5",
+                "duration" : 1000,
+                "link" : []
+            },  
+    "6" :{
+                "name" :"function 6",
+                "duration" : 1000,
+                "link" : []
+            },
+    "7" :{
+                "name" :"function 7",
+                "duration" : 7000,
+                "link" : []
+            },
+    "8" :{
+                "name" :"function 8",
+                "duration" : 500,
+                "link" : []
+            },
+    "9" :{
+                "name" :"function 9",
+                "duration" : 2000,
+                "link" : []
+            },
+    "10" :{
+                "name" :"function 10",
+                "duration" : 3000,
+                "link" : []
+    }
+}

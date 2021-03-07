@@ -3,10 +3,10 @@ class Graph
 {
     // defining vertex array and
     // adjacent list
-    constructor(noOfVertices) {
-      this.noOfVertices = noOfVertices;
-      this.graphList = new Map();
-
+    constructor(filePath) {
+      
+        this.graphList = new Map();
+        this.filePath= filePath;
       
     }
   
@@ -38,6 +38,17 @@ class Graph
     ShowSuccessors(node){
         //console.log(Array.from(this.graphList.get(node)));
         return Array.from(this.graphList.get(node));
+    }
+
+    ShowSuccessorsJSON(node_id){        
+        let data  = fs.readFileSync(this.filePath,{encoding : 'utf8'});
+        let content = JSON.parse(data);
+
+        let keys = Object.keys(content);
+        let values = Object.values(content);
+        
+        let index = keys.find(element => element ==node_id);
+        console.log(values[index].link);
     }
 
     GenericFunction(taskName,duration){
@@ -154,7 +165,7 @@ class Graph
     
         const data = fs.readFileSync(filePath, {encoding : 'utf8'});
         
-        let fileContent = JSON.parse(data);
+        let fileContent = Object.values(JSON.parse(data));
         
         for(let i=0;i<fileContent.length;i++){
             let temp = new Promise((resolve,reject) =>{
