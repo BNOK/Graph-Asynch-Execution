@@ -57,11 +57,11 @@ stackers.push(funct10);
 
 
 // specify the number of vertecies 1
-let Graph = new GP(10);
-let Graph1 = new GP(10);
+let Graph = new GP("./NewGraph.json");
+let Graph1 = new GP();
 
 
-let nodesArray = Graph.MakeFunctions("./parametres.json")
+let nodesArray = Graph.MakeFunctions("./NewGraph.json")
 
 // add the vertecies
 for (let i =0; i<nodesArray.length ; i++){

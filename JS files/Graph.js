@@ -170,7 +170,7 @@ class Graph
         for(let i=0;i<fileContent.length;i++){
             let temp = new Promise((resolve,reject) =>{
                 //console.log("name : ",fileContent[i].name);
-                setTimeout(() => {resolve(fileContent[i].name)},fileContent[i].duration);
+                setTimeout(() => {resolve(fileContent[i].task)},fileContent[i].duration);
             }); 
             finalResult.push(temp);  
             this.AddVertex(temp);
@@ -182,7 +182,7 @@ class Graph
         let n = Array.from(this.graphList.keys());
         
         for(let i=0;i<n.length;i++){
-            let linkArray = fileContent[i].link
+            let linkArray = fileContent[i].successors
             console.log("linkarray", linkArray.length);
             
             if (linkArray.length >0){
