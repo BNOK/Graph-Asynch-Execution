@@ -58,7 +58,7 @@ stackers.push(funct10);
 
 // specify the number of vertecies 1
 let Graph = new GP("./NewGraph.json");
-let Graph1 = new GP();
+let Graph1 = new GP("./NewGraph.json");
 
 
 let nodesArray = Graph.MakeFunctions("./NewGraph.json")
@@ -84,7 +84,7 @@ Graph1.AddEdge(funct4,funct9);
 Graph1.AddEdge(funct4,funct10);
 
 // print the Graph
-//console.log("graph print :");
+
 //Graph1.printGraph();
 
 
@@ -94,8 +94,7 @@ console.log("startingpoints print :");
 const arr =Graph.FindStart();
 
 // find all layers 
-finalArray = Graph.Looper(arr);
-//console.log(finalArray);
+//finalArray = Graph.Looper(arr);
 
 
 console.log("--------------------- sorting is done ------------------------------------------");
@@ -103,7 +102,7 @@ console.log("--------------------- sorting is done -----------------------------
 
 // async function asyncForEach(array) {
 //   let nodies = new Array()
-//   console.log(nodies.length)
+  
 //   for (let index of array) {
     
 //     await index;
@@ -132,7 +131,7 @@ console.log("--------------------- sorting is done -----------------------------
 
 // simpler form of parallel 
 // Promise.all(finalArray[1]).then(value => {
-//   console.log(value)
+ 
 // })
 
 //await 
@@ -176,8 +175,7 @@ async function Executer2(graphArray){
 
   // for(let i=0; i< arriRes.length ;i++){
     
-  //   console.log(arriRes[i]);
-  //   console.log("second");
+   
   // }
 }
 /////////////////
@@ -192,32 +190,36 @@ async function asyncForEach(array, callback) {
 //----------
 
 //final executor ?
-
+let index =0;
 function Executor3(array){
-  
   let subArray = new Array();
   
-
+  //console.log("array input length : ",array.length)
   for(let i=0; i< array.length ;i++){
-    console.log("start !")
-    
-    array[i].then((value) =>{
-      console.log("executed : " + value);
-      subArray = Graph.ShowSuccessors(array[i])
+    //console.log("start !")
+    let visit = Graph.graphList.get(array[i])[Graph.graphList.get(array[i]).length-1];
+    //console.log("status",visit)
+    if (!visit){
       
-      if(subArray.length !=0){
-        console.log("finished !");
-        Executor3(subArray);
-      }
-      else{
-        console.log("no more successors !!");
-        return null;
-      }
-    })
-
+      array[i].then((value) =>{
+        console.log("executed : " + value);
+        subArray = Graph.ShowSuccessors(array[i])
+        //console.log("subarray", subArray);
+        Graph.graphList.get(array[i]).splice(Graph.graphList.get(array[i]).length-1,1,true);
+        //console.log("after changing",Graph.graphList.get(array[i]));
+        
+        if(subArray.length !=0){
+          console.log("finished !");
+          Executor3(subArray);
+        }
+        else{
+          console.log("no more successors !!");
+          return null;
+        }
+      })
+    }
   }
- 
 }
 /////////////
-Executor3(Array.from(finalArray[0]))
+Executor3(Array.from(arr))
 /////////////

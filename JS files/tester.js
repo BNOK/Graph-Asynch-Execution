@@ -1,4 +1,5 @@
 const fs = require('fs');
+const Graph = require('./Graph');
 const Gp= require('./Graph');
 
 // fs.readFile('./parametres.json', 'utf8', (err, data) => {
@@ -102,18 +103,32 @@ const Gp= require('./Graph');
 
 
 //--------- beauty ---------
-let finalResult = new Array();
-    
-const data = fs.readFileSync("./parametres.json", {encoding : 'utf8'});
+function Executor3(array){
+    Graph.graphObject
+    let subArray = new Array();
+    for(let i=0; i< array.length ;i++){
+      console.log("start !")
+     
+      if(!visited){
+        array[i].then((value) =>{
+            console.log("executed : " + value);
+            subArray = Graph.ShowSuccessors(array[i])
+            
+            if(subArray.length !=0){
+              console.log("finished !");
+              Executor3(subArray);
+            }
+            else{
+              console.log("no more successors !!");
+              return null;
+            }
+          })
+        }
+      }
+      
+  }
 
-let fileContent = Object.values(JSON.parse(data));
 
-for(let i=0;i<fileContent.length;i++){
-    let temp = new Promise((resolve,reject) =>{
-        //console.log("name : ",fileContent[i].name);
-        setTimeout(() => {resolve(fileContent[i].name)},fileContent[i].duration);
-    }); 
-    finalResult.push(temp);  
-} 
-    
-console.log("finalresult:",finalResult);
+
+ 
+ 

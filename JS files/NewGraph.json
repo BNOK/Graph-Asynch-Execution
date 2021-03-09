@@ -2,109 +2,136 @@
     "0" : {
         "task" : "LB",
         "successors" : [1,2,3]
+        
     },
     "1" :{
         "task" : "Section_1",
         "successors" : [4,5,6]
+        
     },
     "2" :{
         "task" : "Section_2",
         "successors" : [14,15,16,17]
+        
     },
     "3" :{
         "task" : "Section_3",
         "successors" : [22,23]
+        
     },
     "4" :{
         "task" : "Task_1.1",
         "successors" : [7]
+        
     },
     "5" :{
         "task" : "Task_1.2",
         "successors" : []
+        
     },
     "6" :{
         "task" : "Task_1.3",
         "successors" : []
+        
     },
     "7" :{
         "task" : "Task_1.4",
         "successors" : [8]
+        
     },
     "8" :{
         "task" : "Task_1.5",
         "successors" : [9,10]
+        
     },
     "9" :{
         "task" : "Task_1.6",
         "successors" : [11]
+        
     },
     "10" :{
         "task" : "Task_1.7",
         "successors" : [12]
+        
     },
     "11" :{
         "task" : "Task_1.8",
         "successors" : [13]
+        
     },
     "12" :{
         "task" : "Task_1.9",
         "successors" : [13]
+        
     },
     "13" :{
         "task" : "Task_1.10",
         "successors" : []
+        
     },
     "14" :{
         "task" : "Task_2.1",
         "successors" : [18]
+        
     },
     "15" :{
         "task" : "Task_2.2",
         "successors" : []
+        
     },
     "16" :{
         "task" : "Task_2.3",
         "successors" : []
+        
     },
     "17" :{
         "task" : "Task_2.4",
         "successors" : []
+        
     },
     "18" :{
         "task" : "Task_2.5",
         "successors" : [19]
+        
     },
     "19" :{
         "task" : "Task_2.6",
         "successors" : [20]
+        
     },
     "20" :{
         "task" : "Task_2.7",
         "successors" : [21]
+        
     },
     "21" :{
         "task" : "Task_2.8",
         "successors" : []
+        
     },
     "22" :{
         "task" : "Task_3.1",
         "successors" : []
+        
     },
     "23" :{
         "task" : "Task_3.2",
         "successors" : [24]
+        
     },
     "24" :{
         "task" : "Task_3.3",
         "successors" : [25,26]
+        
     },
     "25" :{
         "task" : "Task_3.4",
         "successors" : []
+        
     },
     "26" :{
         "task" : "Task_3.5",
         "successors" : []
+        
     }
 }

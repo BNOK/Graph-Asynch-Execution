@@ -6,13 +6,13 @@ class Graph
     constructor(filePath) {
       
         this.graphList = new Map();
-        this.filePath= filePath;
-      
+        this.graphObject = JSON.parse(fs.readFileSync(filePath,{encoding : 'utf8'}));
+        this.visitedChecker = new Array();
     }
   
     // adding vertex as key to a Map 
     AddVertex(vertex){
-        this.graphList.set(vertex, new Array());
+        this.graphList.set(vertex, []);
     }  
       
     // adding edges w as the value of the key v 
@@ -20,32 +20,28 @@ class Graph
         this.graphList.get(v).push(w);
     }
 
-    //show successors using JSON
-    SetEdeges(data){
-        let n= Array.from(this.graphList.keys());
-
-        for(let i=0;i<n.length;i++){
-            let linkArray = data[i].link
-
-            for(let j=0;j<linkArray;i++){
-                let o =linkArray[j];
-                this.graphList.get(n[i]).push(n[o]);
-            }
-        }
-
-    }
+   
     //show successors using code 
     ShowSuccessors(node){
-        //console.log(Array.from(this.graphList.get(node)));
-        return Array.from(this.graphList.get(node));
+        // console.log(Array.from(this.graphList.get(node)));
+        let succs = Array.from(this.graphList.get(node));
+        succs.pop();
+        return succs
     }
 
-    ShowSuccessorsJSON(node_id){        
-        let data  = fs.readFileSync(this.filePath,{encoding : 'utf8'});
-        let content = JSON.parse(data);
+    CheckVisit(node_id){
+        return this.graphList.get(node_id).pop()
+    }
 
-        let keys = Object.keys(content);
-        let values = Object.values(content);
+    SetVisit(node_id,status){
+        this.graphList.get(node_id).push(status)
+    }
+    //show successors using JSON
+    ShowSuccessorsJSON(node_id){        
+       
+
+        let keys = Object.keys(this.graphObject);
+        let values = Object.values(this.graphObject);
         
         let index = keys.find(element => element ==node_id);
         console.log(values[index].link);
@@ -61,7 +57,7 @@ class Graph
     X= new Array();
     FindStart(){
         let temp = Array.from(this.graphList.keys()); // get the keys(vertecies) in the form of array
-        //console.log("origin =" +temp);
+        // console.log("origin =" +temp);
         this.graphList.forEach(values => {
             const arr1 =values;
            
@@ -72,7 +68,7 @@ class Graph
                     if (temp.includes(arr1[i])){
                         let pos = temp.indexOf(arr1[i]);        
                         temp.splice(pos,1);
-                        //console.log("temp splice = "+temp);
+                        // console.log("temp splice = "+temp);
                     }
                 }
                 
@@ -160,16 +156,14 @@ class Graph
     }
 
     // ------------------- JSON file operations ---------------
-    MakeFunctions(filePath){
-        let finalResult = new Array();
-    
-        const data = fs.readFileSync(filePath, {encoding : 'utf8'});
+    MakeFunctions(){
+        let finalResult = new Array();    
+        let fileContent = Object.values(this.graphObject);
         
-        let fileContent = Object.values(JSON.parse(data));
         
         for(let i=0;i<fileContent.length;i++){
             let temp = new Promise((resolve,reject) =>{
-                //console.log("name : ",fileContent[i].name);
+                // console.log("name : ",fileContent[i].name);
                 setTimeout(() => {resolve(fileContent[i].task)},fileContent[i].duration);
             }); 
             finalResult.push(temp);  
@@ -190,11 +184,12 @@ class Graph
                 for(let j=0;j<linkArray.length;j++){
                     console.log("i =" ,i)
                     let o = linkArray[j];
-                    //console.log("head",i)
+                    // console.log("head",i)
                     this.graphList.get(n[i]).push(n[o]);
                     
-                }
+                }  
             }
+            this.graphList.get(n[i]).push(false);
         }
         //-----------------
         console.log(this.graphList);
