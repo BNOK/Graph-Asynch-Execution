@@ -164,25 +164,25 @@ class Graph
         for(let i=0;i<fileContent.length;i++){
             let temp = new Promise((resolve,reject) =>{
                 // console.log("name : ",fileContent[i].name);
-                setTimeout(() => {resolve(fileContent[i].task)},fileContent[i].duration);
+                setTimeout(() => {resolve(fileContent[i].name)},fileContent[i].duration);
             }); 
             finalResult.push(temp);  
             this.AddVertex(temp);
         }
-        console.log("finalresult:",finalResult);
+        
         
         console.log("setting the edges :");
         //------------ setting the edges ------
         let n = Array.from(this.graphList.keys());
         
         for(let i=0;i<n.length;i++){
-            let linkArray = fileContent[i].successors
-            console.log("linkarray", linkArray.length);
+            let linkArray = fileContent[i].link;
+            
             
             if (linkArray.length >0){
                 
                 for(let j=0;j<linkArray.length;j++){
-                    console.log("i =" ,i)
+                    
                     let o = linkArray[j];
                     // console.log("head",i)
                     this.graphList.get(n[i]).push(n[o]);
@@ -192,7 +192,7 @@ class Graph
             this.graphList.get(n[i]).push(false);
         }
         //-----------------
-        console.log(this.graphList);
+        
 
         return finalResult;
     }
