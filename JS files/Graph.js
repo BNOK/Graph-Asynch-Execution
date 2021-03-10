@@ -53,6 +53,20 @@ class Graph
         });
     }
 
+    FindTaskDuration(node){
+        let index = Array.from(this.graphList.keys()).indexOf(node);
+        let val = Object.values(this.graphObject);
+
+        return val[index].duration;
+    }
+
+    FindTaskname(node){
+        let index = Array.from(this.graphList.keys()).indexOf(node);
+        let val = Object.values(this.graphObject);
+
+        return val[index].name;
+    }
+
     // find starting points ---------
     X= new Array();
     FindStart(){
