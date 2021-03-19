@@ -7,7 +7,8 @@ class Graph
       
         this.graphList = new Map();
         this.graphObject = JSON.parse(fs.readFileSync(filePath,{encoding : 'utf8'}));
-        this.visitedChecker = new Array();
+        this.visitedArray = new Array();  
+        
     }
   
     // adding vertex as key to a Map 
@@ -23,18 +24,18 @@ class Graph
    
     //show successors using code 
     ShowSuccessors(node){
-        // console.log(Array.from(this.graphList.get(node)));
+        
         let succs = Array.from(this.graphList.get(node));
-        succs.pop();
+        
         return succs
     }
 
-    CheckVisit(node_id){
-        return this.graphList.get(node_id).pop()
+    CheckVisit(index){
+        return this.visitedArray[index];
     }
 
-    SetVisit(node_id,status){
-        this.graphList.get(node_id).push(status)
+    SetVisit(index,status){
+        this.visitedArray[index] = status;
     }
     //show successors using JSON
     ShowSuccessorsJSON(node_id){        
@@ -171,7 +172,6 @@ class Graph
 
     // ------------------- JSON file operations ---------------
     MakeFunctions(){
-        let finalResult = new Array();    
         let fileContent = Object.values(this.graphObject);
         
         
@@ -180,7 +180,7 @@ class Graph
                 // console.log("name : ",fileContent[i].name);
                 setTimeout(() => {resolve(fileContent[i].name)},fileContent[i].duration);
             }); 
-            finalResult.push(temp);  
+            this.visitedArray.push(false);  
             this.AddVertex(temp);
         }
         
@@ -198,17 +198,17 @@ class Graph
                 for(let j=0;j<linkArray.length;j++){
                     
                     let o = linkArray[j];
-                    // console.log("head",i)
+                    
                     this.graphList.get(n[i]).push(n[o]);
                     
                 }  
             }
-            this.graphList.get(n[i]).push(false);
+            
         }
         //-----------------
         
 
-        return finalResult;
+        return  this.visitedArray;
     }
 }
 
