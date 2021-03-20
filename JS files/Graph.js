@@ -5,7 +5,7 @@ class Graph
     // adjacent list
     constructor(filePath) {
       
-        this.graphList = new Map();
+        
         this.graphObject = JSON.parse(fs.readFileSync(filePath,{encoding : 'utf8'}));
         this.visitedArray = new Array();  
         

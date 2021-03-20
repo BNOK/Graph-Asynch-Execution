@@ -1,0 +1,47 @@
+{
+    "0" : {
+        "name" : "Task_0",
+        "link" : [1,2,3],
+        "duration" : 2000
+    },
+    "1" :{
+        "name" : "Task_1",
+        "link" : [4,5],
+        "duration" : 100
+    },
+    "2" :{
+        "name" : "Task_2",
+        "link" : [6,8],
+        "duration" : 1000
+    },
+    "3" :{
+        "name" : "Task_3",
+        "link" : [6],
+        "duration" : 15000
+    },
+    "4" :{
+        "name" : "Task_4",
+        "link" : [],
+        "duration" : 1000
+    },
+    "5" :{
+        "name" : "Task_5",
+        "link" : [],
+        "duration" : 1000
+    },
+    "6" :{
+        "name" : "Task_6",
+        "link" : [7],
+        "duration" : 1000
+    },
+    "7" :{
+        "name" : "Task_7",
+        "link" : [],
+        "duration" : 1000
+    },
+    "8" :{
+        "name" : "Task_8",
+        "link" : [],
+        "duration" : 2000
+    }
+}
