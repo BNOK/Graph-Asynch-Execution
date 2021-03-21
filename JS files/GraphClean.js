@@ -77,12 +77,15 @@ class GraphClean{
 
     ReleaseParent(parent){
         
-        childnodes = parent.getChildren();
-
+        let childnodes = parent.getChildren();
+        
         for(let i=0;i<childnodes.length;i++){
-            nodeParents = this.NodeList[childnodes[i]].parents;
-            parentIndex = 
-            nodeParents.splice(parentIndex,1);
+            let nodeParents = this.NodeList[childnodes[i]].parents;
+            
+            if(nodeParents.includes(parent.id)){
+                let parentIndex = (element) => element == parent;
+                nodeParents.splice(parentIndex,1);
+            }
         }
     }
 
@@ -94,7 +97,7 @@ class GraphClean{
             let parentsArray = this.NodeList[succs[i]].parents;
 
             if (parentsArray.length === 0) { 
-                selectedSuccs.push(succs[i])
+                selectedSuccs.push(this.NodeList[succs[i]]);
             }
         }
         return selectedSuccs;

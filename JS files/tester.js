@@ -23,9 +23,9 @@ function Executor(array) {
         console.log(`${Graph.FindTaskname(array[i])} is now executing for ${Graph.FindTaskDuration(array[i])} ms` );
         Graph.ExecuteNode(array[i],(value) =>{
             console.log(`${value} is now finished for ${Graph.FindTaskDuration(array[i])} ms` );//+ JSON.stringify(array[i])
-            
+            Graph.ReleaseParent(array[i]);
             subArray = Graph.ShowSuccessors(array[i]);
-            console.log("subArray :",subArray);
+        
             if (subArray.length != 0) {
                 console.log('Dependants tasks of ' + "\x1b[34m%s\x1b[0m",`${value} are now being launched in parallel.` )
                 Executor(subArray);
