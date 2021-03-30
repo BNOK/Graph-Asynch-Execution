@@ -1,5 +1,6 @@
 const fs = require('fs');
 const node = require("./NodeClass.js");
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 
 class GraphClean{
@@ -105,6 +106,16 @@ class GraphClean{
 
     ExecuteNode(node,funct){
         node.task.then(funct);
+    }
+
+    ExecuteHttpNode(req){
+        req.addEventListener('readystatechange',() => {
+            if (xhr.readyState === 4){
+                console.log(xhr.responseText);
+            }
+        })
+        req.open('GET','https://jsonplaceholder.typicode.com/todos/1');
+        req.send();
     }
 }
 

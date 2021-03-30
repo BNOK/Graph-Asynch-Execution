@@ -4,8 +4,6 @@ class NodeClass{
         this.children = [];
         this.name = name;
         this.id = id;
-        this.start = false;
-        this.finish = false;
         this.duration = duration;
 
         this.task = new Promise((resolve, reject) => {
@@ -13,6 +11,8 @@ class NodeClass{
                 resolve(this.name)
             }, this.duration);
         });
+
+        this.httpRequest = 0;
     }
 
     setParents(Parent){

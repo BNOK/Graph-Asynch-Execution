@@ -1,5 +1,5 @@
 const gp = require('./GraphClean.js');
-
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 let Graph = new gp('./dataSample.json');
 
