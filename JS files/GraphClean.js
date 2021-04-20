@@ -20,7 +20,7 @@ class GraphClean{
             let nodeInstance = new node(ident,name,dur);
             nodeInstance.setChildren(values[i].link);
            
-            //adding to the Node List
+            //adding node object to the NodeList
             this.NodeList.push(nodeInstance);
         }
 
@@ -28,6 +28,7 @@ class GraphClean{
     }
 
     FindTaskDuration(node){
+        // the parametre given is an object
         let index = this.NodeList.indexOf(node);
         let val = Object.values(this.GraphContent);
 
@@ -35,6 +36,7 @@ class GraphClean{
     }
 
     FindTaskname(node){
+        //parametre given is an object 
         let index = this.NodeList.indexOf(node);
         let val = Object.values(this.GraphContent);
 
@@ -42,6 +44,7 @@ class GraphClean{
     }
 
     FindTaskId(node){
+        //parametre given is an object
         let index = this.NodeList.indexOf(node);
         return index;
     }
@@ -63,7 +66,7 @@ class GraphClean{
         }  
     }
 
-    //finding roots of the graph
+    //finding roots of the graph -- this is supposed to be static method of the class
     FindRoots(){
         let roots = new Array();
 
@@ -108,13 +111,18 @@ class GraphClean{
         node.task.then(funct);
     }
 
-    ExecuteHttpNode(req){
-        req.addEventListener('readystatechange',() => {
-            if (xhr.readyState === 4){
-                console.log(xhr.responseText);
-            }
-        })
-        req.open('GET','https://jsonplaceholder.typicode.com/todos/1');
+    //---- http module -----
+    httpGetter(req,url){
+    
+            
+    req.open('GET',url);
+    req.onload = function(){
+        let data = req.responseText;
+        let obj = JSON.parse(data);
+        console.log(obj.id);
+        console.log("----");
+        // write code to manipulate the response here
+    }
         req.send();
     }
 }

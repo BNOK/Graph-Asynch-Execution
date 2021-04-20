@@ -1,26 +1,20 @@
 {
     "0" : {
-        "task" : "LB",
-        "successors" : [1]
+        "task" : "first link",
+        "successors" : [1],
+        "url":"https://jsonplaceholder.typicode.com/todos/1"
         
     },
     "1" :{
-        "task" : "Section_1",
-        "successors" : [2]
+        "task" : "second link",
+        "successors" : [2],
+        "url":"https://jsonplaceholder.typicode.com/todos/2"
         
     },
     "2" :{
-        "task" : "Section_2",
-        "successors" : [3]
+        "task" : "third link",
+        "successors" : [3],
+        "url":"https://jsonplaceholder.typicode.com/todos/3"
         
-    },
-    "3" :{
-        "task" : "Section_3",
-        "successors" : [4]
-        
-    },
-    "4" :{
-        "task" : "Task_1.1",
-        "successors" : []
     }
 }

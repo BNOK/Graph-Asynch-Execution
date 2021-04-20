@@ -12,7 +12,7 @@ class NodeClass{
             }, this.duration);
         });
 
-        this.httpRequest = 0;
+        this.httpRequest = new XMLHttpRequest();
     }
 
     setParents(Parent){
@@ -30,6 +30,8 @@ class NodeClass{
     getChildren(){
         return this.children;
     }
+
+    
 
 }
 
