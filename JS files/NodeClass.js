@@ -1,3 +1,6 @@
+
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 class NodeClass{
     constructor(id, name, duration){
         this.parents = [];
@@ -12,7 +15,7 @@ class NodeClass{
             }, this.duration);
         });
 
-        this.httpRequest = new XMLHttpRequest();
+        this.xhr = new XMLHttpRequest();
     }
 
     setParents(Parent){

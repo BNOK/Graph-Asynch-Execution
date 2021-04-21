@@ -12,12 +12,10 @@ class GraphClean{
     createNodes() {
         let values = Object.values(this.GraphContent);
         for(let i=0;i<values.length;i++){
-
-            let ident = i;
             let name = values[i].name;
             let dur = values[i].duration;
             //creation of an instance
-            let nodeInstance = new node(ident,name,dur);
+            let nodeInstance = new node(i,name,dur);
             nodeInstance.setChildren(values[i].link);
            
             //adding node object to the NodeList
@@ -49,6 +47,13 @@ class GraphClean{
         return index;
     }
 
+    nodeURL(node){
+        let index = this.NodeList.indexOf(node);
+        let val = Object.values(this.GraphContent);
+
+        return val[index].url;
+    }
+
     // i think this is a pretty good code ..
     SetNodeParents(){
         let values = Array.from(Object.values(this.GraphContent));
@@ -59,6 +64,7 @@ class GraphClean{
            if (links.length !=0){
                 for(let j=0;j<links.length;j++){
                     let childNode = this.NodeList[links[j]];
+                    
                     childNode.setParents(i);
                     //console.log(`parents for ${childNode.name} are :`,childNode.parents);
                 }
@@ -112,19 +118,24 @@ class GraphClean{
     }
 
     //---- http module -----
-    httpGetter(req,url){
-    
-            
-    req.open('GET',url);
-    req.onload = function(){
-        let data = req.responseText;
-        let obj = JSON.parse(data);
-        console.log(obj.id);
-        console.log("----");
-        // write code to manipulate the response here
-    }
+    httpGetter(req,url,node){  
+        this.ReleaseParent(node);
+        let succ = this.ShowSuccessors(node);  
+        
+
+        req.open('GET',url);
+        req.onload = function(){      
+                let data = req.responseText;
+                let obj = JSON.parse(data);
+                console.log("request completed !");
+                console.log(obj.id);
+               
+                // write code to manipulate the response here
+        }
         req.send();
+        return succ;
     }
+
 }
 
 module.exports = GraphClean;

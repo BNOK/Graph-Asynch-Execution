@@ -45,3 +45,30 @@ const gp = require('./GraphClean.js');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 let Graph = new gp('./httpdata.json');
+
+//creates instances of node class with all properties except for the parents
+Graph.createNodes();
+
+//sets the parents for each node
+Graph.SetNodeParents();
+
+
+
+//gets the roots index
+let root = Graph.FindRoots();
+
+// ------------ Execution ----------------
+function Executor(array) {
+    
+    for (let i = 0; i < array.length; i++){
+        let suc = new Array();
+        suc = Graph.httpGetter(array[i].xhr,Graph.nodeURL(array[i]),array[i]);
+        
+        if(suc != []){
+            Executor(suc);
+        }
+    }
+}
+///////////////
+Executor(root);
+///////////////
