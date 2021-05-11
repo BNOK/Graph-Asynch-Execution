@@ -1,20 +1,42 @@
 {
-    "0" : {
-        "task" : "first link",
-        "link" : [1],
-        "url":"https://jsonplaceholder.typicode.com/todos/1"
-        
+    "system_details": {
+      "sysId": "sysid1",
+      "product": "product1",
+      "serviceLevel": "serviceLevel",
+      "cellRouterModel": "routerModel.series"
     },
-    "1" :{
-        "task" : "second link",
-        "link" : [2],
-        "url":"https://jsonplaceholder.typicode.com/todos/2"
-        
-    },
-    "2" :{
-        "task" : "third link",
-        "link" : [],
-        "url":"https://jsonplaceholder.typicode.com/todos/3"
-        
-    }
+    "Components": [
+      {
+        "name": "Component1",
+        "sections": [
+          {
+            "name": "Section1.1",
+            "designations": [
+              {
+                "name": "Designation1.1.1",
+                "tasks": [
+                  {
+                    "taskName": "task1",
+                    "status": "pending",
+                    "locationDetails": {
+                      "workflowId": "11",
+                      "sectionId": "11",
+                      "componentId": "11",
+                      "model": "c220_m5"
+                    }
+                  }
+                ]
+              }
+            ],
+            "children": [
+              "Section1.3"
+            ]
+          }
+        ],
+        "children": [
+          "Compute3",
+          "Compute4"
+        ]
+      }
+    ]
 }
