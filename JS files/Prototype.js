@@ -1,48 +1,51 @@
+const gp = require('./GraphClean.js');
 const fs = require('fs');
 
-GraphContent = JSON.parse(fs.readFileSync("./httpdata.json",{encoding : 'utf8'}));
+
+GraphContent = JSON.parse(fs.readFileSync("./httpdata.json", { encoding: 'utf8' }));
 console.log(GraphContent);
 console.log("------------");
-let object = new Array();
-
-//-------------
-// let newobj ={}
-// for(let i=0;i<Object.values(GraphContent).length;i++){ 
-//     newobj[i] ={
-//         "key":Object.keys(GraphContent)[i],
-//         "value": Object.values(GraphContent)[i]
-//     };
-
-//     if (typeof(newobj[i])==='object'){
-//         console.log("this is an object",newobj[i]);
-//     }
-//     else{
-//         console.log("this is a prop",newobj[i])
-//     }
-
-// }
-
-// console.log("newobj:",Object.values(newobj)[1].value);
-
-// console.log("new obj:", newobj)
 
 
 //---- recursive function ---- 
-function props(obj,index){
-    console.log("index :",index);
+let newobj = {}
+
+let index = 0
+function props(obj) {
+
     for(let val in obj){
-        if (obj[val] === null){
+        index++;
+        if(obj[val]===null){
             break;
         }
-        else if(typeof(obj[val])==='object'){
-            console.log(`key : ${val}, value : ==>`);
-            index++;
-            props(obj[val],index);
+        else if (typeof(obj[val])==="object"){
+            newobj[index] = {val,"isobject":true}
+            console.log("object");
+            props(obj[val])
         }
         else{
-            console.log(`key : ${val}, value : ${obj[val]}`);
+            newobj[index] = {val,"isobject":false}
+            console.log("prop")
         }
     }
 }
 
-props(GraphContent,0)
+props(GraphContent, index)
+console.log(newobj);
+
+//-----------
+// let index=0
+// function prop2(obj){
+//     let objs = new Array();
+//     let vals = Object.values(obj)
+//     for (let i=0;i<vals.length;i++){
+//         if(typeof(vals[i])==="object"){
+//             prop2()
+//         }
+//     }
+
+//     console.log(objs)
+// }
+
+// prop2(GraphContent)
+
