@@ -22,5 +22,14 @@ Where the magic happens, after creating a subtraction layer, we bring the necess
 
 For adding new features without messing with the old code to try and make as independant as possible so the code becomes more flexible and reusable.
 
-## 
+## How to make it work
+
+Include the necessary packages and download all the necessary files, 
+
+enter the main file and add the JSON file at the top of the script, with the necessary keys and values.
+in the terminal type 
+
+Node main.js
+
+and wait for the magic to happen.
 
